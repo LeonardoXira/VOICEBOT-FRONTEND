@@ -1,30 +1,8 @@
-# React + TypeScript + Vite
+![Technologies](https://skillicons.dev/icons?i=react,ts,tailwind,vite)
+# Documentación del FrontEnd
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hola, comenzaremos explicando lo que es este frontend: es una aplicación web que se encarga de poder interactuar con el backend del voiicebot, es decir, es la interfaz gráfica que se encarga de poder enviar y recibir mensajes del backend.
 
-Currently, two official plugins are available:
+## Estructura
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+El proyecto fue realizado con React, TypeScript, Vite y TailwindCSS
