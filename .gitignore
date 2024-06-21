@@ -1,3 +1,9 @@
+# Environment
+.env
+
+# Dependency directories
+package-lock.json
+
 # Logs
 logs
 *.log
