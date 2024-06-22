@@ -1,20 +1,15 @@
 import { instance } from '../networking/axios'
 
-interface ExtraInfoInterface {
-  campo1: string;
-  campo2: string;
-  campo3: string;
-  campo4: string;
-  campo5: string;
-  campo6: string;
-  campo7: string;
-  campo8: string;
-  campo9: string;
-  campo10: string;
+interface NewCallResponseInterface {
+  callId: string
+  numDeriv: string
+  phoneNumber: string
+  estatus: number
+  audio64: string
 }
 
 class VoicebotService {
-  async initNewCall(callId: string, phoneNumber: string, campaign: string, extraInfo: ExtraInfoInterface) {
+  async initNewCall (callId: string, phoneNumber: string, campaign: string, extraInfo: { [key: number]: string }): Promise<NewCallResponseInterface> {
     const response = await instance.post('/newCall', {
       callId,
       phoneNumber,
@@ -25,7 +20,7 @@ class VoicebotService {
     return response.data
   }
 
-  async continueCall(callId: string, phoneNumber: string, campaign: string, audioBase64: string) {
+  async continueCall (callId: string, phoneNumber: string, campaign: string, audioBase64: string) {
     const response = await instance.post('/call', {
       callId,
       phoneNumber,
