@@ -157,8 +157,10 @@ export const App = () => {
   const handleSendAudio = async (clip: AudioClipInterface) => {
     try {
       console.log('Sending audio...', clip)
+      const response = await voicebotService.continueCall(callId, phone, campaign, clip.blob)
+      setAudioResponse([...audioResponse, response.audio64])
     } catch (error: any) {
-      console.error('Error sending audio:', error.message)
+      console.error('Error al enviar el audio:', error.message)
     }
   }
 
@@ -249,13 +251,21 @@ export const App = () => {
             </div>
           ))}
         </div>
-        <div className="text-center">
+        <div className="text-center flex gap-4">
           <button
             disabled={!campaign || !isValidPhoneNumber || isConversationStarted}
             className="px-4 py-2 rounded-lg text-white font-semibold bg-blue-500 hover:bg-blue-700 flex gap-3 items-center disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
             onClick={handleStartConversation}
           >
             Iniciar Conversación
+            <ChatIcon className="fill-white" height="20" width="20" />
+          </button>
+          <button
+            disabled={!isConversationStarted}
+            className="px-4 py-2 rounded-lg text-white font-semibold bg-red-500 hover:bg-red-700 flex gap-3 items-center disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
+            onClick={handleStartConversation}
+          >
+            Finalizar llamada
             <ChatIcon className="fill-white" height="20" width="20" />
           </button>
         </div>

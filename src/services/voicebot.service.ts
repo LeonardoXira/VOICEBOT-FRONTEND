@@ -20,13 +20,23 @@ class VoicebotService {
     return response.data
   }
 
-  async continueCall (callId: string, phoneNumber: string, campaign: string, audioBase64: string) {
-    const response = await instance.post('/call', {
-      callId,
-      phoneNumber,
-      campaign,
-      audioBase64
+  async continueCall (callId: string, phoneNumber: string, campaign: string, audioBlob: Blob) {
+    const formData = new FormData()
+    const timestamp = new Date().getTime()
+
+    formData.append('callId', callId)
+    formData.append('phoneNumber', phoneNumber)
+    formData.append('campaign', campaign)
+    formData.append('audio', audioBlob, `${timestamp}`)
+
+    console.log('Enviando Audio...', audioBlob)
+    const response = await instance.post('/call', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     })
+
+    console.log('Audio Enviado')
 
     return response.data
   }
