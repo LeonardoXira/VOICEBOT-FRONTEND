@@ -93,7 +93,8 @@ export const App = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const { value } = e.target
-    const key = `campo${index}`
+    const adjustedIndex = index + 1
+    const key = `campo${adjustedIndex}`
     setExtraInfo({
       ...extraInfo,
       [key]: value
@@ -196,6 +197,7 @@ export const App = () => {
                 Selecciona una campaña
               </option>
               <option value="Penta Liverpool Welcome Voicebot">Penta Liverpool Welcome Voicebot</option>
+              <option value="Xira QA Voicebot">Xira QA Voicebot</option>
             </select>
           )}
         </div>
@@ -235,22 +237,26 @@ export const App = () => {
           />
         </div>
         <div className="grid grid-cols-4 gap-4">
-          {[...Array(extraInfoFields)].map((_, index) => (
-            <div key={index} className="mb-4">
-              <label htmlFor={`extraInfo${index}`} className="block text-gray-700 font-bold mb-2">
-                Campo {index + 1}
-              </label>
-              <input
-                type="text"
-                id={`extraInfo${index}`}
-                name={`extraInfo${index}`}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={extraInfo[`campo${index}`] || ''}
-                onChange={(e) => handleInputChange(e, index)}
-              />
-            </div>
-          ))}
+          {[...Array(extraInfoFields)].map((_, index) => {
+            const displayIndex = index + 1
+            return (
+              <div key={displayIndex} className="mb-4">
+                <label htmlFor={`extraInfo${displayIndex}`} className="block text-gray-700 font-bold mb-2">
+                  Campo {displayIndex}
+                </label>
+                <input
+                  type="text"
+                  id={`extraInfo${displayIndex}`}
+                  name={`extraInfo${displayIndex}`}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  value={extraInfo[`campo${displayIndex}`] || ''}
+                  onChange={(e) => handleInputChange(e, index)}
+                />
+              </div>
+            )
+          })}
         </div>
+
         <div className="text-center flex gap-4">
           <button
             disabled={!campaign || !isValidPhoneNumber || isConversationStarted}

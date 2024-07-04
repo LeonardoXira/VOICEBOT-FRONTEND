@@ -10,6 +10,7 @@ interface NewCallResponseInterface {
 
 class VoicebotService {
   async initNewCall (callId: string, phoneNumber: string, campaign: string, extraInfo: { [key: number]: string }): Promise<NewCallResponseInterface> {
+    console.log('Iniciando llamada con lo siguientes datos:', callId, phoneNumber, campaign, extraInfo)
     const response = await instance.post('/newCall', {
       callId,
       phoneNumber,
